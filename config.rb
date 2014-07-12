@@ -1,3 +1,7 @@
+
+require 'lib/static_d3_helpers.rb'
+helpers StaticD3Helpers
+
 ###
 # Compass
 ###
@@ -14,7 +18,7 @@
 # Per-page layout changes:
 #
 # With no layout
-# page "/path/to/file.html", :layout => false
+# page "index.html", :layout => false
 #
 # With alternative layout
 # page "/path/to/file.html", :layout => :otherlayout
@@ -52,6 +56,8 @@ set :css_dir, 'stylesheets'
 set :js_dir, 'javascripts'
 
 set :images_dir, 'images'
+
+set :data_dir, 'data'
 
 # Build-specific configuration
 configure :build do
