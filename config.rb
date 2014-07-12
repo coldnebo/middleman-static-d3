@@ -15,6 +15,10 @@ helpers StaticD3Helpers
 # Page options, layouts, aliases and proxies
 ###
 
+# ignore all resource files except for the *.html.erb files because we are 
+# using the static embedding helpers to convert resources to data-uris.
+ignore {|file| file !~ /html/ }
+
 # Per-page layout changes:
 #
 # With no layout
