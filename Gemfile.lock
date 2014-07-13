@@ -1,16 +1,3 @@
-GIT
-  remote: https://github.com/avantcredit/pry-plus.git
-  revision: 9170ad3bc651b09c1185badd74553b1b37e3505c
-  specs:
-    pry-plus (1.0.1)
-      bond
-      jist
-      pry-byebug
-      pry-doc
-      pry-docmore
-      pry-rescue
-      pry-stack_explorer
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -20,27 +7,17 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
-    binding_of_caller (0.7.2)
-      debug_inspector (>= 0.0.1)
-    bond (0.5.1)
-    byebug (2.7.0)
-      columnize (~> 0.3)
-      debugger-linecache (~> 1.2)
     chunky_png (1.3.1)
-    coderay (1.1.0)
     coffee-script (2.2.0)
       coffee-script-source
       execjs
     coffee-script-source (1.7.1)
-    columnize (0.8.9)
     compass (0.12.6)
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
       sass (~> 3.2.19)
     compass-import-once (1.0.4)
       sass (>= 3.2, < 3.5)
-    debug_inspector (0.0.2)
-    debugger-linecache (1.2.0)
     em-websocket (0.5.1)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.6.0)
@@ -56,16 +33,12 @@ GEM
       uber (~> 0.0.4)
     http_parser.rb (0.6.0)
     i18n (0.6.11)
-    interception (0.5)
-    jist (1.5.1)
-      json
     json (1.8.1)
     kramdown (1.4.0)
     listen (1.3.1)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
       rb-kqueue (>= 0.2)
-    method_source (0.8.2)
     middleman (3.3.3)
       coffee-script (~> 2.2.0)
       compass (>= 0.12.4)
@@ -107,25 +80,6 @@ GEM
       tilt (~> 1.4.1)
     padrino-support (0.12.2)
       activesupport (>= 3.1)
-    pry (0.10.0)
-      coderay (~> 1.1.0)
-      method_source (~> 0.8.1)
-      slop (~> 3.4)
-    pry-byebug (1.3.3)
-      byebug (~> 2.7)
-      pry (~> 0.10)
-    pry-doc (0.6.0)
-      pry (~> 0.9)
-      yard (~> 0.8)
-    pry-docmore (0.1.1)
-      pry
-      pry-doc
-    pry-rescue (1.4.1)
-      interception (>= 0.5)
-      pry
-    pry-stack_explorer (0.4.9.1)
-      binding_of_caller (>= 0.7)
-      pry (>= 0.9.11)
     rack (1.5.2)
     rack-livereload (0.3.15)
       rack
@@ -137,7 +91,6 @@ GEM
     rb-kqueue (0.2.3)
       ffi (>= 0.5.0)
     sass (3.2.19)
-    slop (3.5.0)
     sprockets (2.12.1)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -157,7 +110,6 @@ GEM
     uglifier (2.5.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
-    yard (0.8.7.4)
 
 PLATFORMS
   ruby
@@ -165,7 +117,5 @@ PLATFORMS
 DEPENDENCIES
   middleman (~> 3.3.3)
   middleman-livereload (~> 3.1.0)
-  pry
-  pry-plus!
   tzinfo-data
   wdm (~> 0.1.0)

@@ -7,6 +7,10 @@ title: "static d3 example"
 <style>
 
 body {
+  padding: 1em;
+}
+
+svg {
   font: 10px sans-serif;
 }
 
@@ -25,7 +29,25 @@ body {
   fill: steelblue;
 }
 
+
+
 </style>
+
+<h1><%= current_page.data.title %></h1>
+
+<div>
+  
+  <p>This is an adaptation of the "Bivariate Area Chart" 
+    <%= link_to 'demonstration', 'http://bl.ocks.org/mbostock/3884914' %> 
+    of <%= link_to 'd3.js', 'http://d3js.org/' %> compiled into a static 
+    HTML file using the <%= link_to 'middleman-static-d3', 'https://github.com/coldnebo/middleman-static-d3' %> template.</p>
+
+  <p>Everything you see on this page exists in a single self-contained file that can be viewed anywhere.</p>
+
+  <%# example of embedding an image %>
+  <img src="<%= data_uri('images/middleman.png', 'image/png') %>" style="width: 50px;" />
+  
+</div>
 
 <%# data_embed takes two arguments, 
     #1: filename in source/data directory
@@ -105,5 +127,16 @@ svg.append("g")
     .attr("dy", ".71em")
     .style("text-anchor", "end")
     .text("Temperature (ºF)");
+
+// optional image insert inside svg example:
+svg.selectAll("image").data([0])
+  .enter()
+  .append("svg:image")
+  .attr("xlink:href", "<%= inline data_uri('images/middleman.png', 'image/png') %>")
+  .attr("x", width - 55)
+  .attr("y", 5)
+  .attr("width", "50")
+  .attr("height", "50");
+
 
 </script>

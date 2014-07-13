@@ -15,6 +15,6 @@ gem "tzinfo-data", platforms: [:mswin, :mingw]
 
 
 # for debugging 
-gem 'pry'
-gem 'pry-plus', git: 'https://github.com/avantcredit/pry-plus.git'
+#gem 'pry'
+#gem 'pry-plus', git: 'https://github.com/avantcredit/pry-plus.git'
 

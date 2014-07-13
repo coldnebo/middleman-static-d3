@@ -15,12 +15,56 @@ The end result of a build is a completely portable static html file (no extra cs
 
 # Try it!
 
-First, get the template:
+You should have the following prerequisites:
+
+* ruby 2.1.2
+* git
+* modern brower that supports d3.js
+* (optional) rvm
+
+Quickstart with the sample viz included in the template:
 
     $ git clone https://github.com/coldnebo/middleman-static-d3.git my_d3_vis
     $ cd my_d3_vis
+    $ bundle install
     $ middleman build
           create  build/index.html
+    $ google-chrome build/index.html
+
+# Template details
+
+Let's take a look at the template in more detail:
+
+    .
+    ├── config.rb
+    ├── Gemfile
+    ├── Gemfile.lock
+    ├── lib
+    │   └── static_d3_helpers.rb
+    ├── README.md
+    └── source
+        ├── data                 # d3 data folder (not to be confused with middleman ./data!)
+        │   └── data.tsv         # example TSV data file
+        ├── images
+        │   └── middleman.png
+        ├── index.html.erb       # example d3.js viz
+        ├── javascripts
+        │   ├── d3.js
+        │   ├── d3.min.js        # included d3.js version
+        │   └── LICENSE
+        ├── layouts
+        │   └── layout.erb
+        └── stylesheets
+            └── normalize.css
+
+
+Next, it's time to make your own.
+
+* take a look at `source/index.html.erb` to see how the file format works.
+
+Normalize.css and d3.js are automatically included for you (see `source/layouts/layout.erb` for how). You can embed your own js and css files with the embedding helpers below.
+
+
 
 
 #Helpers
@@ -29,5 +73,9 @@ Adds the following helpers:
 
 * javascript_embed(js_path)
 * stylesheet_embed(css_path)
-* data_embed(data_path, var_name)
+* data_embed(data_path, var_name) - used to embed files under data
+* data_uri(source_path, mime_type) - used to create a data_uri for image tags, etc.
+* inline(data) - used to fit data on a single line for embedding into js.
+
+
 
