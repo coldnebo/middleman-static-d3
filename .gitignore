@@ -19,3 +19,4 @@
 
 # my ignores
 .ruby-gemset
+Gemfile.lock
