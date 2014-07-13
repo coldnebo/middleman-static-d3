@@ -49,6 +49,13 @@ svg {
   
 </div>
 
+<div id="vis"></div>
+
+<div>
+  <h2>data.tsv</h2>
+  <pre id="display_data"></pre>
+</div>
+
 <%# data_embed takes two arguments, 
     #1: filename in source/data directory
     #2: the name of the javascript variable the data is bound to. %>
@@ -81,7 +88,7 @@ var area = d3.svg.area()
     .y0(function(d) { return y(d.low); })
     .y1(function(d) { return y(d.high); });
 
-var svg = d3.select("body").append("svg")
+var svg = d3.select("#vis").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
@@ -104,6 +111,8 @@ var data = d3.tsv.parse(rawData, function(d) {
     high: +d.high
   };
 });
+
+d3.select('#display_data').html(rawData);
 
 x.domain(d3.extent(data, function(d) { return d.date; }));
 y.domain([d3.min(data, function(d) { return d.low; }), d3.max(data, function(d) { return d.high; })]);
@@ -140,3 +149,5 @@ svg.selectAll("image").data([0])
 
 
 </script>
+
+
