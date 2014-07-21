@@ -2,42 +2,63 @@ require 'base64'
 
 module StaticD3Helpers
   
-  def javascript_embed(js_path)
-    js = data_uri("#{js_dir}/#{js_path}.js", "application/javascript")
-    %{<script src="#{js}"></script>}
+  def javascript_embed(js_resource)
+    if build?
+      js = data_uri("#{js_dir}/#{js_resource}.js", "application/javascript")
+      %{<script src="#{js}"></script>}
+    else
+      javascript_include_tag js_resource
+    end
   end
 
-  def stylesheet_embed(css_path)
-    css = data_uri("#{css_dir}/#{css_path}.css", "text/css")
-    %{<link rel="stylesheet" type="text/css" href="#{css}">}
+  def stylesheet_embed(css_resource)
+    if build?
+      css = data_uri("#{css_dir}/#{css_resource}.css", "text/css")
+      %{<link rel="stylesheet" type="text/css" href="#{css}">}
+    else
+      stylesheet_link_tag css_resource
+    end
   end
 
-  def data_embed(data_path, var_name)
+  def data_embed(data_path)
     contents = read_file("#{data_dir}/#{data_path}")
     # escape double quotes in data and convert possible newlines to newline escape.
     contents.gsub!(/"/,'\"')
-    contents = inline(contents)
+    contents = reline(contents)
     # assign the variable var_name
-    contents = %{var #{var_name} = "#{contents}";}
+    contents = %{data_embed['#{data_path}'] = "#{contents}";}
     # and bundle the script as a data_uri
     data_uri = data_uri_encode(contents, "application/javascript")
-    %{<!-- data embedding: var #{var_name} = data from '#{data_path}' -->\n<script src="#{data_uri}"></script>}
+    %{<!-- data embedding: data_embed['#{data_path}'] -->\n<script src="#{data_uri}"></script>}
   end
 
-  def data_uri(source_path, mime_type)
-    contents = read_file(source_path)
+  def data_uri(resource, mime_type)
+    contents = read_file(resource)
     data_uri = data_uri_encode(contents, mime_type)
   end 
 
-  # needed for js context; js doesn't like unescaped newlines.
   def inline(data)
-    data.gsub(/(\n|\n\r)/,'\n')
+    data.gsub(/[\n\r]/, '')
   end
 
   private
 
-  def read_file(source_path)
-    file = File.expand_path("../../source/#{source_path}", __FILE__)
+  # needed for data embed
+  def reline(data)
+    data.gsub(/(\n|\n\r)/,'\n')
+  end
+
+
+  def resource_path(resource)
+    file = File.expand_path("#{source_dir}/#{resource}", __FILE__)
+    unless File.exists?(file)
+      file = File.expand_path("#{source_dir}/../#{build_dir}/#{resource}", __FILE__)
+    end
+    file
+  end
+
+  def read_file(resource)
+    file = resource_path(resource)
     raise "File not found: #{file}" unless File.exists?(file)
     File.read(file)
   end

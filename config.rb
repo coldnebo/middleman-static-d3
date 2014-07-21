@@ -17,7 +17,7 @@ helpers StaticD3Helpers
 
 # ignore all resource files except for the *.html.erb files because we are 
 # using the static embedding helpers to convert resources to data-uris.
-ignore {|file| file !~ /html/ }
+ignore {|file| file !~ /(html|css|js)/ }
 
 # Per-page layout changes:
 #
