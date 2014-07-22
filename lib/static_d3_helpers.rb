@@ -26,7 +26,11 @@ module StaticD3Helpers
     contents.gsub!(/"/,'\"')
     contents = reline(contents)
     # assign the variable var_name
-    contents = %{data_embed['#{data_path}'] = "#{contents}";}
+    if data_path =~ /json$/
+      contents = %{data_embed['#{data_path}'] = JSON.parse("#{contents}");}
+    else
+      contents = %{data_embed['#{data_path}'] = "#{contents}";}
+    end
     # and bundle the script as a data_uri
     data_uri = data_uri_encode(contents, "application/javascript")
     %{<!-- data embedding: data_embed['#{data_path}'] -->\n<script src="#{data_uri}"></script>}
@@ -45,7 +49,7 @@ module StaticD3Helpers
 
   # needed for data embed
   def reline(data)
-    data.gsub(/(\n|\n\r)/,'\n')
+    data.gsub(/(\n|\r\n)/,'\n')
   end
 
 
